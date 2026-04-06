@@ -61,6 +61,7 @@ namespace Offsets {
         inline constexpr uintptr_t Width0 = 0x1b8;
         inline constexpr uintptr_t Width1 = 0x1bc;
         inline constexpr uintptr_t ZOffset = 0x1c0;
+        inline uintptr_t Color = 0x0;
     }
 
     namespace BloomEffect {
@@ -134,6 +135,7 @@ namespace Offsets {
         inline constexpr uintptr_t ToRenderView2 = 0x8;
         inline constexpr uintptr_t ToRenderView3 = 0x28;
         inline constexpr uintptr_t Workspace = 0x178;
+        inline uintptr_t DeleterPointer = 0x0;
     }
 
     namespace DepthOfFieldEffect {
@@ -206,6 +208,7 @@ namespace Offsets {
         inline constexpr uintptr_t IsWalking = 0x90f;
         inline constexpr uintptr_t Jump = 0x1dd;
         inline constexpr uintptr_t JumpHeight = 0x1ac;
+        inline constexpr uintptr_t RootPartR6 = 0x0;
         inline constexpr uintptr_t JumpPower = 0x1b0;
         inline constexpr uintptr_t MaxHealth = 0x1b4;
         inline constexpr uintptr_t MaxSlopeAngle = 0x1b8;
@@ -224,6 +227,7 @@ namespace Offsets {
         inline constexpr uintptr_t WalkTimer = 0x410;
         inline constexpr uintptr_t Walkspeed = 0x1d4;
         inline constexpr uintptr_t WalkspeedCheck = 0x3bc;
+        inline uintptr_t RootPartR6 = 0x0;
     }
 
     namespace Instance {
@@ -231,12 +235,14 @@ namespace Offsets {
         inline constexpr uintptr_t AttributeList = 0x18;
         inline constexpr uintptr_t AttributeToNext = 0x58;
         inline constexpr uintptr_t AttributeToValue = 0x18;
+        inline constexpr uintptr_t Capabilities = 0x0;
         inline constexpr uintptr_t ChildrenEnd = 0x8;
         inline constexpr uintptr_t ChildrenStart = 0x78;
         inline constexpr uintptr_t ClassBase = 0xde8;
         inline constexpr uintptr_t ClassDescriptor = 0x18;
         inline constexpr uintptr_t ClassName = 0x8;
         inline constexpr uintptr_t Name = 0xb0;
+        inline constexpr uintptr_t OnDemand = 0x0;
         inline constexpr uintptr_t Parent = 0x70;
         inline constexpr uintptr_t This = 0x8;
     }
@@ -319,6 +325,11 @@ namespace Offsets {
     namespace Misc {
         inline constexpr uintptr_t Adornee = 0x108;
         inline constexpr uintptr_t AnimationId = 0xd0;
+        inline constexpr uintptr_t InsetMaxX = 0x0;
+        inline constexpr uintptr_t InsetMaxY = 0x0;
+        inline constexpr uintptr_t InsetMinX = 0x0;
+        inline constexpr uintptr_t InsetMinY = 0x0;
+        inline constexpr uintptr_t Ping = 0x0;
         inline constexpr uintptr_t StringLength = 0x10;
         inline constexpr uintptr_t Value = 0xd0;
     }
@@ -363,6 +374,7 @@ namespace Offsets {
     namespace Player {
         inline constexpr uintptr_t AccountAge = 0x31c;
         inline constexpr uintptr_t CameraMode = 0x328;
+        inline constexpr uintptr_t CharacterAppearanceId = 0x0;
         inline constexpr uintptr_t DisplayName = 0x130;
         inline constexpr uintptr_t HealthDisplayDistance = 0x348;
         inline constexpr uintptr_t LocalPlayer = 0x130;
@@ -435,9 +447,12 @@ namespace Offsets {
     }
 
     namespace Script {
+        inline constexpr uintptr_t BanningEnabled = 0x0;
         inline constexpr uintptr_t ByteCode = 0x1a8;
         inline constexpr uintptr_t GUID = 0xe8;
         inline constexpr uintptr_t Hash = 0x1b8;
+        inline constexpr uintptr_t RunContext = 0x0;
+        inline constexpr uintptr_t Sandboxed = 0x0;
     }
 
     namespace ScriptContext {
@@ -597,5 +612,46 @@ namespace Offsets {
         inline constexpr uintptr_t Gravity = 0x1d8;
         inline constexpr uintptr_t Primitives = 0x248;
         inline constexpr uintptr_t worldStepsPerSec = 0x668;
+    }
+
+    namespace Silent {
+        inline uintptr_t FramePositionOffsetX = 0x0;
+        inline uintptr_t FramePositionOffsetY = 0x0;
+        inline uintptr_t FramePositionX = 0x0;
+        inline uintptr_t FramePositionY = 0x0;
+        inline uintptr_t FrameRotation = 0x0;
+        inline uintptr_t FrameSizeOffsetX = 0x0;
+        inline uintptr_t FrameSizeOffsetY = 0x0;
+        inline uintptr_t FrameSizeX = 0x0;
+        inline uintptr_t FrameSizeY = 0x0;
+    }
+
+    namespace FFlag {
+        inline uintptr_t List = 0x0;
+        inline uintptr_t ToValueGetSet = 0x0;
+    }
+
+    namespace ValueGetSet {
+        inline uintptr_t ToValue = 0x0;
+    }
+
+    namespace LocalScript {
+        inline uintptr_t ByteCode = 0x0;
+        inline uintptr_t Hash = 0x0;
+    }
+
+    namespace ModuleScript {
+        inline uintptr_t ByteCode = 0x0;
+        inline uintptr_t Hash = 0x0;
+    }
+
+    namespace PlayerConfigurer {
+        inline uintptr_t Pointer = 0x0;
+    }
+
+    namespace MouseService {
+        inline uintptr_t SensitivityPointer = 0x0;
+        inline uintptr_t MousePosition = 0x0;
+        inline uintptr_t InputObject = 0x0;
     }
 }
