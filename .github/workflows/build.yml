@@ -1,0 +1,52 @@
+name: Build xExternal x64
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    strategy:
+      matrix:
+        configuration: [Release]
+        platform: [x64]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+      with:
+        msbuild-version: latest
+
+    - name: Setup Visual Studio
+      uses: microsoft/setup-msvc@v3
+
+    - name: Build xExternal
+      run: |
+        msbuild "xExternal.sln" /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /verbosity:normal
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: xExternal-${{ matrix.platform }}-${{ matrix.configuration }}
+        path: |
+          xExternal/x64/Release/
+        retention-days: 30
+
+    - name: Create Release Asset
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "xExternal/x64/Release/*.exe"
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build Status
+      run: echo "✅ Build completed successfully!"
