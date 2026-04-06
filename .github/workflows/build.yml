@@ -18,22 +18,17 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Add MSBuild to PATH
-      uses: microsoft/setup-msbuild@v1.1
-      with:
-        msbuild-version: latest
-
-    - name: Setup Visual Studio
-      uses: microsoft/setup-msvc@v3
+      uses: microsoft/setup-msbuild@v2
 
     - name: Build xExternal
       run: |
         msbuild "xExternal.sln" /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /verbosity:normal
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: xExternal-${{ matrix.platform }}-${{ matrix.configuration }}
