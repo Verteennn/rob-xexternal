@@ -17,9 +17,9 @@ static const wchar_t* REMOTE_HOST = L"offsets.ntgetwritewatch.workers.dev";
 static const wchar_t* REMOTE_PATH = L"/offsets.hpp";
 
 //  mapping table: remote name -> pointer to local variable
-static std::unordered_map<std::string, const uintptr_t*> BuildMappingTable()
+static std::unordered_map<std::string, uintptr_t*> BuildMappingTable()
 {
-    std::unordered_map<std::string, const uintptr_t*> mapping;
+    std::unordered_map<std::string, uintptr_t*> mapping;
     
     // FakeDataModel
     mapping["FakeDataModelPointer"] = &Offsets::FakeDataModel::Pointer;
