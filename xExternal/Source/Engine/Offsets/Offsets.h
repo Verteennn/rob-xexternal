@@ -227,7 +227,6 @@ namespace Offsets {
         inline constexpr uintptr_t WalkTimer = 0x410;
         inline constexpr uintptr_t Walkspeed = 0x1d4;
         inline constexpr uintptr_t WalkspeedCheck = 0x3bc;
-        inline uintptr_t RootPartR6 = 0x0;
     }
 
     namespace Instance {
@@ -635,23 +634,4 @@ namespace Offsets {
         inline uintptr_t ToValue = 0x0;
     }
 
-    namespace LocalScript {
-        inline uintptr_t ByteCode = 0x0;
-        inline uintptr_t Hash = 0x0;
-    }
-
-    namespace ModuleScript {
-        inline uintptr_t ByteCode = 0x0;
-        inline uintptr_t Hash = 0x0;
-    }
-
-    namespace PlayerConfigurer {
-        inline uintptr_t Pointer = 0x0;
-    }
-
-    namespace MouseService {
-        inline uintptr_t SensitivityPointer = 0x0;
-        inline uintptr_t MousePosition = 0x0;
-        inline uintptr_t InputObject = 0x0;
-    }
 }
