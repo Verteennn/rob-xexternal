@@ -19,182 +19,184 @@ static const wchar_t* REMOTE_PATH = L"/offsets.hpp";
 //  mapping table: remote name -> pointer to local variable
 static std::unordered_map<std::string, uintptr_t*> BuildMappingTable()
 {
-    return {
-        // FakeDataModel
-        { "FakeDataModelPointer",               &Offsets::FakeDataModel::Pointer               },
-        { "FakeDataModelToDataModel",           &Offsets::FakeDataModel::RealDataModel         },
+    std::unordered_map<std::string, uintptr_t*> mapping;
+    
+    // FakeDataModel
+    mapping["FakeDataModelPointer"] = &Offsets::FakeDataModel::Pointer;
+    mapping["FakeDataModelToDataModel"] = &Offsets::FakeDataModel::RealDataModel;
 
-        // VisualEngine
-        { "VisualEnginePointer",                &Offsets::VisualEngine::Pointer                },
-        { "Dimensions",                         &Offsets::VisualEngine::Dimensions             },
-        { "VisualEngineToDataModel1",           &Offsets::VisualEngine::FakeDataModel          },
-        { "viewmatrix",                         &Offsets::VisualEngine::ViewMatrix             },
+    // VisualEngine
+    mapping["VisualEnginePointer"] = &Offsets::VisualEngine::Pointer;
+    mapping["Dimensions"] = &Offsets::VisualEngine::Dimensions;
+    mapping["VisualEngineToDataModel1"] = &Offsets::VisualEngine::FakeDataModel;
+    mapping["viewmatrix"] = &Offsets::VisualEngine::ViewMatrix;
 
-        // TaskScheduler
-        { "TaskSchedulerPointer",               &Offsets::TaskScheduler::Pointer               },
-        { "TaskSchedulerMaxFPS",                &Offsets::TaskScheduler::MaxFPS                },
-        { "JobStart",                           &Offsets::TaskScheduler::JobStart              },
-        { "JobEnd",                             &Offsets::TaskScheduler::JobEnd                },
-        { "Job_Name",                           &Offsets::TaskScheduler::JobName               },
+    // TaskScheduler
+    mapping["TaskSchedulerPointer"] = &Offsets::TaskScheduler::Pointer;
+    mapping["TaskSchedulerMaxFPS"] = &Offsets::TaskScheduler::MaxFPS;
+    mapping["JobStart"] = &Offsets::TaskScheduler::JobStart;
+    mapping["JobEnd"] = &Offsets::TaskScheduler::JobEnd;
+    mapping["Job_Name"] = &Offsets::TaskScheduler::JobName;
 
-        // MouseService
-        { "MouseSensitivity",                   &Offsets::MouseService::SensitivityPointer     },
-        { "MousePosition",                      &Offsets::MouseService::MousePosition          },
-        { "InputObject",                        &Offsets::MouseService::InputObject            },
+    // MouseService
+    mapping["MouseSensitivity"] = &Offsets::MouseService::SensitivityPointer;
+    mapping["MousePosition"] = &Offsets::MouseService::MousePosition;
+    mapping["InputObject"] = &Offsets::MouseService::InputObject;
 
-        // PlayerConfigurer
-        { "PlayerConfigurerPointer",            &Offsets::PlayerConfigurer::Pointer            },
+    // PlayerConfigurer
+    mapping["PlayerConfigurerPointer"] = &Offsets::PlayerConfigurer::Pointer;
 
-        // Instance
-        { "Children",                           &Offsets::Instance::ChildrenStart              },
-        { "ChildrenEnd",                        &Offsets::Instance::ChildrenEnd                },
-        { "Name",                               &Offsets::Instance::Name                       },
-        { "Parent",                             &Offsets::Instance::Parent                     },
-        { "ClassDescriptor",                    &Offsets::Instance::ClassDescriptor            },
-        { "ClassDescriptorToClassName",         &Offsets::Instance::ClassName                  },
-        { "InstanceAttributePointer1",          &Offsets::Instance::AttributeContainer         },
-        { "InstanceAttributePointer2",          &Offsets::Instance::AttributeList              },
-        { "AttributeToNext",                    &Offsets::Instance::AttributeToNext            },
-        { "AttributeToValue",                   &Offsets::Instance::AttributeToValue           },
-        { "InstanceCapabilities",               &Offsets::Instance::Capabilities               },
-        { "OnDemandInstance",                   &Offsets::Instance::OnDemand                   },
+    // Instance
+    mapping["Children"] = &Offsets::Instance::ChildrenStart;
+    mapping["ChildrenEnd"] = &Offsets::Instance::ChildrenEnd;
+    mapping["Name"] = &Offsets::Instance::Name;
+    mapping["Parent"] = &Offsets::Instance::Parent;
+    mapping["ClassDescriptor"] = &Offsets::Instance::ClassDescriptor;
+    mapping["ClassDescriptorToClassName"] = &Offsets::Instance::ClassName;
+    mapping["InstanceAttributePointer1"] = &Offsets::Instance::AttributeContainer;
+    mapping["InstanceAttributePointer2"] = &Offsets::Instance::AttributeList;
+    mapping["AttributeToNext"] = &Offsets::Instance::AttributeToNext;
+    mapping["AttributeToValue"] = &Offsets::Instance::AttributeToValue;
+    mapping["InstanceCapabilities"] = &Offsets::Instance::Capabilities;
+    mapping["OnDemandInstance"] = &Offsets::Instance::OnDemand;
 
-        // DataModel
-        { "CreatorId",                          &Offsets::DataModel::CreatorId                 },
-        { "GameId",                             &Offsets::DataModel::GameId                    },
-        { "PlaceId",                            &Offsets::DataModel::PlaceId                   },
-        { "JobId",                              &Offsets::DataModel::JobId                     },
-        { "Workspace",                          &Offsets::DataModel::Workspace                 },
-        { "GameLoaded",                         &Offsets::DataModel::GameLoaded                },
-        { "ScriptContext",                      &Offsets::DataModel::ScriptContext             },
-        { "DataModelPrimitiveCount",            &Offsets::DataModel::PrimitiveCount            },
-        { "DataModelDeleterPointer",            &Offsets::DataModel::DeleterPointer            },
-        { "DataModelToRenderView1",             &Offsets::DataModel::ToRenderView1             },
-        { "DataModelToRenderView2",             &Offsets::DataModel::ToRenderView2             },
-        { "DataModelToRenderView3",             &Offsets::DataModel::ToRenderView3             },
+    // DataModel
+    mapping["CreatorId"] = &Offsets::DataModel::CreatorId;
+    mapping["GameId"] = &Offsets::DataModel::GameId;
+    mapping["PlaceId"] = &Offsets::DataModel::PlaceId;
+    mapping["JobId"] = &Offsets::DataModel::JobId;
+    mapping["Workspace"] = &Offsets::DataModel::Workspace;
+    mapping["GameLoaded"] = &Offsets::DataModel::GameLoaded;
+    mapping["ScriptContext"] = &Offsets::DataModel::ScriptContext;
+    mapping["DataModelPrimitiveCount"] = &Offsets::DataModel::PrimitiveCount;
+    mapping["DataModelDeleterPointer"] = &Offsets::DataModel::DeleterPointer;
+    mapping["DataModelToRenderView1"] = &Offsets::DataModel::ToRenderView1;
+    mapping["DataModelToRenderView2"] = &Offsets::DataModel::ToRenderView2;
+    mapping["DataModelToRenderView3"] = &Offsets::DataModel::ToRenderView3;
 
-        // FFlag
-        { "FFlagList",                          &Offsets::FFlag::List                          },
-        { "FFlagToValueGetSet",                 &Offsets::FFlag::ToValueGetSet                 },
+    // FFlag
+    mapping["FFlagList"] = &Offsets::FFlag::List;
+    mapping["FFlagToValueGetSet"] = &Offsets::FFlag::ToValueGetSet;
 
-        // ValueGetSet
-        { "ValueGetSetToValue",                 &Offsets::ValueGetSet::ToValue                 },
+    // ValueGetSet
+    mapping["ValueGetSetToValue"] = &Offsets::ValueGetSet::ToValue;
 
-        // Camera
-        { "Camera",                             &Offsets::Workspace::CurrentCamera             },
-        { "CameraPos",                          &Offsets::Camera::Position                     },
-        { "CameraRotation",                     &Offsets::Camera::Rotation                     },
-        { "CameraSubject",                      &Offsets::Camera::CameraSubject                },
-        { "CameraType",                         &Offsets::Camera::CameraType                   },
-        { "FOV",                                &Offsets::Camera::FieldOfView                  },
-        { "ViewportSize",                       &Offsets::Camera::ViewportSize                 },
+    // Camera
+    mapping["Camera"] = &Offsets::Workspace::CurrentCamera;
+    mapping["CameraPos"] = &Offsets::Camera::Position;
+    mapping["CameraRotation"] = &Offsets::Camera::Rotation;
+    mapping["CameraSubject"] = &Offsets::Camera::CameraSubject;
+    mapping["CameraType"] = &Offsets::Camera::CameraType;
+    mapping["FOV"] = &Offsets::Camera::FieldOfView;
+    mapping["ViewportSize"] = &Offsets::Camera::ViewportSize;
 
-        // Humanoid
-        { "Health",                             &Offsets::Humanoid::Health                     },
-        { "MaxHealth",                          &Offsets::Humanoid::MaxHealth                  },
-        { "WalkSpeed",                          &Offsets::Humanoid::Walkspeed                  },
-        { "WalkSpeedCheck",                     &Offsets::Humanoid::WalkspeedCheck             },
-        { "JumpPower",                          &Offsets::Humanoid::JumpPower                  },
-        { "HipHeight",                          &Offsets::Humanoid::HipHeight                  },
-        { "RigType",                            &Offsets::Humanoid::RigType                    },
-        { "Sit",                                &Offsets::Humanoid::Sit                        },
-        { "MoveDirection",                      &Offsets::Humanoid::MoveDirection              },
-        { "HumanoidState",                      &Offsets::Humanoid::HumanoidState              },
-        { "HumanoidStateId",                    &Offsets::Humanoid::HumanoidStateID            },
-        { "HumanoidDisplayName",                &Offsets::Humanoid::DisplayName                },
-        { "AutoJumpEnabled",                    &Offsets::Humanoid::AutoJumpEnabled            },
-        { "EvaluateStateMachine",               &Offsets::Humanoid::EvaluateStateMachine       },
-        { "HealthDisplayDistance",              &Offsets::Humanoid::HealthDisplayDistance       },
-        { "NameDisplayDistance",                &Offsets::Humanoid::NameDisplayDistance         },
-        { "RootPartR15",                        &Offsets::Humanoid::HumanoidRootPart           },
-        { "RootPartR6",                         &Offsets::Humanoid::RootPartR6                 },
+    // Humanoid
+    mapping["Health"] = &Offsets::Humanoid::Health;
+    mapping["MaxHealth"] = &Offsets::Humanoid::MaxHealth;
+    mapping["WalkSpeed"] = &Offsets::Humanoid::Walkspeed;
+    mapping["WalkSpeedCheck"] = &Offsets::Humanoid::WalkspeedCheck;
+    mapping["JumpPower"] = &Offsets::Humanoid::JumpPower;
+    mapping["HipHeight"] = &Offsets::Humanoid::HipHeight;
+    mapping["RigType"] = &Offsets::Humanoid::RigType;
+    mapping["Sit"] = &Offsets::Humanoid::Sit;
+    mapping["MoveDirection"] = &Offsets::Humanoid::MoveDirection;
+    mapping["HumanoidState"] = &Offsets::Humanoid::HumanoidState;
+    mapping["HumanoidStateId"] = &Offsets::Humanoid::HumanoidStateID;
+    mapping["HumanoidDisplayName"] = &Offsets::Humanoid::DisplayName;
+    mapping["AutoJumpEnabled"] = &Offsets::Humanoid::AutoJumpEnabled;
+    mapping["EvaluateStateMachine"] = &Offsets::Humanoid::EvaluateStateMachine;
+    mapping["HealthDisplayDistance"] = &Offsets::Humanoid::HealthDisplayDistance;
+    mapping["NameDisplayDistance"] = &Offsets::Humanoid::NameDisplayDistance;
+    mapping["RootPartR15"] = &Offsets::Humanoid::HumanoidRootPart;
+    mapping["RootPartR6"] = &Offsets::Humanoid::RootPartR6;
 
-        // Primitive / BasePart
-        { "Position",                           &Offsets::Primitive::Position                  },
-        { "CFrame",                             &Offsets::Primitive::Rotation                  },
-        { "Velocity",                           &Offsets::Primitive::AssemblyLinearVelocity    },
-        { "PartSize",                           &Offsets::Primitive::Size                      },
-        { "Primitive",                          &Offsets::BasePart::Primitive                  },
-        { "Transparency",                       &Offsets::BasePart::Transparency               },
-        { "Anchored",                           &Offsets::Primitive::Flags                     },
-        { "MaterialType",                       &Offsets::Primitive::Material                  },
+    // Primitive / BasePart
+    mapping["Position"] = &Offsets::Primitive::Position;
+    mapping["CFrame"] = &Offsets::Primitive::Rotation;
+    mapping["Velocity"] = &Offsets::Primitive::AssemblyLinearVelocity;
+    mapping["PartSize"] = &Offsets::Primitive::Size;
+    mapping["Primitive"] = &Offsets::BasePart::Primitive;
+    mapping["Transparency"] = &Offsets::BasePart::Transparency;
+    mapping["Anchored"] = &Offsets::Primitive::Flags;
+    mapping["MaterialType"] = &Offsets::Primitive::Material;
 
-        // Player
-        { "LocalPlayer",                        &Offsets::Player::LocalPlayer                  },
-        { "ModelInstance",                      &Offsets::Player::ModelInstance                },
-        { "UserId",                             &Offsets::Player::UserId                       },
-        { "Team",                               &Offsets::Player::Team                         },
-        { "DisplayName",                        &Offsets::Player::DisplayName                  },
-        { "PlayerMouse",                        &Offsets::Player::Mouse                        },
-        { "CameraMode",                         &Offsets::Player::CameraMode                   },
-        { "CameraMaxZoomDistance",              &Offsets::Player::MaxZoomDistance              },
-        { "CameraMinZoomDistance",              &Offsets::Player::MinZoomDistance              },
-        { "CharacterAppearanceId",              &Offsets::Player::CharacterAppearanceId        },
+    // Player
+    mapping["LocalPlayer"] = &Offsets::Player::LocalPlayer;
+    mapping["ModelInstance"] = &Offsets::Player::ModelInstance;
+    mapping["UserId"] = &Offsets::Player::UserId;
+    mapping["Team"] = &Offsets::Player::Team;
+    mapping["DisplayName"] = &Offsets::Player::DisplayName;
+    mapping["PlayerMouse"] = &Offsets::Player::Mouse;
+    mapping["CameraMode"] = &Offsets::Player::CameraMode;
+    mapping["CameraMaxZoomDistance"] = &Offsets::Player::MaxZoomDistance;
+    mapping["CameraMinZoomDistance"] = &Offsets::Player::MinZoomDistance;
+    mapping["CharacterAppearanceId"] = &Offsets::Player::CharacterAppearanceId;
 
-        // Workspace / World
-        { "WorkspaceToWorld",                   &Offsets::Workspace::World                     },
-        { "Gravity",                            &Offsets::World::Gravity                       },
-        { "ReadOnlyGravity",                    &Offsets::Workspace::ReadOnlyGravity           },
+    // Workspace / World
+    mapping["WorkspaceToWorld"] = &Offsets::Workspace::World;
+    mapping["Gravity"] = &Offsets::World::Gravity;
+    mapping["ReadOnlyGravity"] = &Offsets::Workspace::ReadOnlyGravity;
 
-        // Lighting
-        { "OutdoorAmbient",                     &Offsets::Lighting::OutdoorAmbient             },
-        { "FogColor",                           &Offsets::Lighting::FogColor                   },
-        { "FogEnd",                             &Offsets::Lighting::FogEnd                     },
-        { "FogStart",                           &Offsets::Lighting::FogStart                   },
-        { "ClockTime",                          &Offsets::Lighting::ClockTime                  },
+    // Lighting
+    mapping["OutdoorAmbient"] = &Offsets::Lighting::OutdoorAmbient;
+    mapping["FogColor"] = &Offsets::Lighting::FogColor;
+    mapping["FogEnd"] = &Offsets::Lighting::FogEnd;
+    mapping["FogStart"] = &Offsets::Lighting::FogStart;
+    mapping["ClockTime"] = &Offsets::Lighting::ClockTime;
 
-        // Silent / GUI
-        { "FramePositionOffsetX",               &Offsets::Silent::FramePositionOffsetX         },
-        { "FramePositionOffsetY",               &Offsets::Silent::FramePositionOffsetY         },
-        { "FramePositionX",                     &Offsets::Silent::FramePositionX               },
-        { "FramePositionY",                     &Offsets::Silent::FramePositionY               },
-        { "FrameRotation",                      &Offsets::Silent::FrameRotation                },
-        { "FrameSizeOffsetX",                   &Offsets::Silent::FrameSizeOffsetX             },
-        { "FrameSizeOffsetY",                   &Offsets::Silent::FrameSizeOffsetY             },
-        { "FrameSizeX",                         &Offsets::Silent::FrameSizeX                   },
-        { "FrameSizeY",                         &Offsets::Silent::FrameSizeY                   },
+    // Silent / GUI
+    mapping["FramePositionOffsetX"] = &Offsets::Silent::FramePositionOffsetX;
+    mapping["FramePositionOffsetY"] = &Offsets::Silent::FramePositionOffsetY;
+    mapping["FramePositionX"] = &Offsets::Silent::FramePositionX;
+    mapping["FramePositionY"] = &Offsets::Silent::FramePositionY;
+    mapping["FrameRotation"] = &Offsets::Silent::FrameRotation;
+    mapping["FrameSizeOffsetX"] = &Offsets::Silent::FrameSizeOffsetX;
+    mapping["FrameSizeOffsetY"] = &Offsets::Silent::FrameSizeOffsetY;
+    mapping["FrameSizeX"] = &Offsets::Silent::FrameSizeX;
+    mapping["FrameSizeY"] = &Offsets::Silent::FrameSizeY;
 
-        // Misc
-        { "AnimationId",                        &Offsets::Misc::AnimationId                    },
-        { "StringLength",                       &Offsets::Misc::StringLength                   },
-        { "Value",                              &Offsets::Misc::Value                          },
-        { "Ping",                               &Offsets::Misc::Ping                           },
-        { "InsetMaxX",                          &Offsets::Misc::InsetMaxX                      },
-        { "InsetMaxY",                          &Offsets::Misc::InsetMaxY                      },
-        { "InsetMinX",                          &Offsets::Misc::InsetMinX                      },
-        { "InsetMinY",                          &Offsets::Misc::InsetMinY                      },
+    // Misc
+    mapping["AnimationId"] = &Offsets::Misc::AnimationId;
+    mapping["StringLength"] = &Offsets::Misc::StringLength;
+    mapping["Value"] = &Offsets::Misc::Value;
+    mapping["Ping"] = &Offsets::Misc::Ping;
+    mapping["InsetMaxX"] = &Offsets::Misc::InsetMaxX;
+    mapping["InsetMaxY"] = &Offsets::Misc::InsetMaxY;
+    mapping["InsetMinX"] = &Offsets::Misc::InsetMinX;
+    mapping["InsetMinY"] = &Offsets::Misc::InsetMinY;
 
-        // Sound
-        { "SoundId",                            &Offsets::Sound::SoundId                       },
+    // Sound
+    mapping["SoundId"] = &Offsets::Sound::SoundId;
 
-        // Sky
-        { "SkyboxBk",                           &Offsets::Sky::SkyboxBk                        },
-        { "SkyboxDn",                           &Offsets::Sky::SkyboxDn                        },
-        { "SkyboxFt",                           &Offsets::Sky::SkyboxFt                        },
-        { "SkyboxLf",                           &Offsets::Sky::SkyboxLf                        },
-        { "SkyboxRt",                           &Offsets::Sky::SkyboxRt                        },
-        { "SkyboxUp",                           &Offsets::Sky::SkyboxUp                        },
-        { "StarCount",                          &Offsets::Sky::StarCount                       },
-        { "MoonTextureId",                      &Offsets::Sky::MoonTextureId                   },
-        { "SunTextureId",                       &Offsets::Sky::SunTextureId                    },
+    // Sky
+    mapping["SkyboxBk"] = &Offsets::Sky::SkyboxBk;
+    mapping["SkyboxDn"] = &Offsets::Sky::SkyboxDn;
+    mapping["SkyboxFt"] = &Offsets::Sky::SkyboxFt;
+    mapping["SkyboxLf"] = &Offsets::Sky::SkyboxLf;
+    mapping["SkyboxRt"] = &Offsets::Sky::SkyboxRt;
+    mapping["SkyboxUp"] = &Offsets::Sky::SkyboxUp;
+    mapping["StarCount"] = &Offsets::Sky::StarCount;
+    mapping["MoonTextureId"] = &Offsets::Sky::MoonTextureId;
+    mapping["SunTextureId"] = &Offsets::Sky::SunTextureId;
 
-        // Beam
-        { "BeamBrightness",                     &Offsets::Beam::Brightness                     },
-        { "BeamColor",                          &Offsets::Beam::Color                          },
-        { "BeamLightEmission",                  &Offsets::Beam::LightEmission                  },
-        { "BeamLightInfuence",                  &Offsets::Beam::LightInfluence                 },
+    // Beam
+    mapping["BeamBrightness"] = &Offsets::Beam::Brightness;
+    mapping["BeamColor"] = &Offsets::Beam::Color;
+    mapping["BeamLightEmission"] = &Offsets::Beam::LightEmission;
+    mapping["BeamLightInfuence"] = &Offsets::Beam::LightInfluence;
 
-        // Script
-        { "BanningEnabled",                     &Offsets::Script::BanningEnabled               },
-        { "RunContext",                          &Offsets::Script::RunContext                   },
-        { "Sandboxed",                          &Offsets::Script::Sandboxed                    },
+    // Script
+    mapping["BanningEnabled"] = &Offsets::Script::BanningEnabled;
+    mapping["RunContext"] = &Offsets::Script::RunContext;
+    mapping["Sandboxed"] = &Offsets::Script::Sandboxed;
 
-        // Scripts (bytecode)
-        { "LocalScriptByteCode",                &Offsets::LocalScript::ByteCode                },
-        { "LocalScriptHash",                    &Offsets::LocalScript::Hash                    },
-        { "ModuleScriptByteCode",               &Offsets::ModuleScript::ByteCode               },
-        { "ModuleScriptHash",                   &Offsets::ModuleScript::Hash                   },
-    };
+    // Scripts (bytecode)
+    mapping["LocalScriptByteCode"] = &Offsets::LocalScript::ByteCode;
+    mapping["LocalScriptHash"] = &Offsets::LocalScript::Hash;
+    mapping["ModuleScriptByteCode"] = &Offsets::ModuleScript::ByteCode;
+    mapping["ModuleScriptHash"] = &Offsets::ModuleScript::Hash;
+    
+    return mapping;
 }
 
 //  winhttp fetch, returns raw text body or empty on failure
